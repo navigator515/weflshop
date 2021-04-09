@@ -2,8 +2,8 @@
 
 const express = require('express');
 const router= express.Router();
-const multer = reqire('multer');
-
+const multer = require('multer');
+// const { Product } = require("../models/Product");
 
 //=================================
 //             Product
@@ -17,7 +17,7 @@ var storage = multer.diskStorage({
     },
     filename: function (req, file, cb) //uploads 디렉토리로 저장될때 파일 이름 지정하는 것
     {
-      cb(null,`${Date.now()}_${ file.fieldname }`)
+      cb(null,`${Date.now()}_${ file.originalname }`)
     }
   })
    
@@ -30,7 +30,7 @@ router.post('/image', (req,res) =>{
 
     //가져온 이미지를 저장을 해주면 된다.
 
-    upload(req, res, err =>{
+    upload(req, res, (err) =>{
         if(err){
             return req.json({success:false, err})
         }

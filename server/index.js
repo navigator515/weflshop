@@ -8,6 +8,8 @@ const cookieParser = require("cookie-parser");
 
 const config = require("./config/key");
 
+// const product =require( './routes/product');
+
 // const mongoose = require("mongoose");
 // mongoose
 //   .connect(config.mongoURI, { useNewUrlParser: true })
@@ -36,7 +38,7 @@ app.use(cookieParser());
 app.use('/api/users', require('./routes/users'));
 
 // app.post('/api/product/image',ko) // index 에서 직접 받는 것이 아닌 product.js 로 넘겨준다
-app.use('/api/product',require('./routes/product'));//product.js 에게 전달
+app.use('/api/product', require('./routes/product'));//product.js 에게 전달
 
 
 //use this to show the image you have in node js server to client (react js)

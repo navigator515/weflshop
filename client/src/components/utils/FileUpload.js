@@ -49,12 +49,12 @@ function FileUpload() {
             )}
             </Dropzone>
 
-            <div  style={{width:350, height:240, overflowX:'scroll'}}>
+            <div  style={{width:350, height:240, overflowY:'scroll'}}>
 
                     {Images.map((image, index) => (
                         <div key={index}>
                             <img style={{ minWidth:'300px', width:'300px', height:'240px'}}
-                            src={`http://locallhost:5000/${image.filePath}`} />
+                            src={`http://localhost:5000/${image}`} />
                         </div>
                     ))}
             </div>
