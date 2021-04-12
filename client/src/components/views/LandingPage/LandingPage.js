@@ -14,6 +14,10 @@ function LandingPage() {
     const [Skip, setSkip] = useState(0);
     const [Limit, setLimit]= useState(4);
     const [PostSize, setPostSize] = useState(0)
+    const [Filters, setFilters] = useState({
+        area: [],
+        interest :[]
+    })
 
     useEffect(() => {
 
@@ -81,7 +85,35 @@ function LandingPage() {
         </Col>
     })
 
+    //서버에 요청할 때 filters 를 추가하여 보낸다
+    // fiters 에는 category 값이 담겨 있고 
+    //category의 해당 배열을 넘긴다 
+    
+    const showFilteredResults= (filters)=>{
 
+        let body={
+            skip : 0,
+            limit:Limit,
+            filters:filters
+            
+        }
+        getProducts(body);
+        setSkip(0);
+    }
+
+
+    //category ( area or interst ) 에 따라서 (구분하여) 필터링할 수 있도록 구현
+    //Filters 에는 area 배열과, interest 배열이 함께 있는데 
+    // 그것을 category 인자로 구분하여서 fiters 값 ( [1,3,4] 등) 을 넣어준다.
+    
+    const handleFilters =(filters, category)=>{
+        const newFilters = {...Filters};
+
+        newFilters[category]=filters;//[1,2,3 ] 을 넣어줌 
+
+        showFilteredResults(newFilters)
+
+    }
     return (
        <div style={{width:'75%', margin: '3rem auto'}}>
            <div style={{textAlign:'center'}}>
@@ -92,7 +124,7 @@ function LandingPage() {
 
           {/* Filter */}
           {/* CheckBox */}
-          <CheckBox list={area}/>
+          <CheckBox list={area} handleFilters={filters => handleFilters(filters, "area")}/>
           {/* RadioBox */}
           {/* Search */}
 
