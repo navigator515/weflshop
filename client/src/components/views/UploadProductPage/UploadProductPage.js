@@ -1,6 +1,7 @@
 import React,{useState} from 'react'
 import {Typography, Button, Form ,Input} from 'antd';
 import FileUpload from '../../utils/FileUpload';
+import Axios from 'axios';
 const {TextArea}=Input;
 
 
@@ -12,14 +13,22 @@ const Interests =[
     {key:4, value:"취약계층"}
 ]
 
-function UploadProductPage() {
+const Areas =[
+    {key:1, value:"서울"},
+    {key:2, value:"부산"},
+    {key:3, value:"인천"},
+    {key:4, value:"경기도"}
+]
+
+function UploadProductPage(props) {
 
     const [Title, setTitle] =useState("");
     const [Description, setDescription]=useState("");
-    const [Price, setPrice] = useState(0);
-    const [Interest, setInterst]=useState(1);
-    const [Image, setImage]=useState([]);
+    // const [Price, setPrice] = useState(0);
+    const [Images, setImages]=useState([]);
 
+    const [Interest, setInterst]=useState(1);
+    const [Area, setArea] =useState(1);
 
     const titleChangeHandler=(event)=>{
         setTitle(event.currentTarget.value);
@@ -30,13 +39,52 @@ function UploadProductPage() {
     }
 
 
-    const priceChangeHandler=(event)=>{
-        setPrice(event.currentTarget.value);
-    }
+    // const priceChangeHandler=(event)=>{
+    //     setPrice(event.currentTarget.value);
+    // }
     
 
     const InterestsChangeHandler=(event)=>{
         setInterst(event.currentTarget.value);
+    }
+
+    const AreasChangeHandler=(event)=>{
+        setArea(event.currentTarget.value);
+    }
+
+    const updateImages = (newImages) =>{
+        setImages(newImages);
+    }
+
+    const submitHandler= (event)=>{
+        event.preventDefault();
+
+        if(!Title|| !Description|| !Interest || !Images)
+        {
+            return alert('모든 값을 넣어주셔야 합니다.')
+        }
+        const body={
+            //로그인된 사람의 ID 
+            writer: props.user.userData._id,
+            title:Title,
+            description:Description,
+            // price:Price,
+            images:Images,
+            interest:Interest,
+            area:Area
+        }
+
+        //서버에 채운 값들을 request로 보낸다 
+
+        Axios.post('/api/product',body)
+        .then(response=>{
+            if(response.data.success){
+                alert("게시물 업로드에 성공 했습니다.")
+                props.history.push('/')
+            }else{
+                alert('게시물 업로드에 실패 했습니다.')
+            }
+        })
     }
     return (
         <div style={{maxWidth:'700px', margin:'2rem auto'}}>
@@ -45,9 +93,9 @@ function UploadProductPage() {
 
             </div>
 
-        <Form>
+        <Form onSubmit={submitHandler}>
             {/* DropZone */}
-            <FileUpload/>
+            <FileUpload refreshFunction={updateImages} />
 
             <br/>
             <br/>
@@ -57,27 +105,32 @@ function UploadProductPage() {
             <br/>
             <label>내용</label>
             <TextArea onChange={descriptionChangeHandler} value={Description}/>
-            <br/>
+            {/* <br/>
             <br/>
             <label>가격</label>
-            <Input type="number" onChange={priceChangeHandler} value={Price}/>
+            <Input type="number" onChange={priceChangeHandler} value={Price}/> */}
 
             <br/>
             <br/>
             <select onChange={InterestsChangeHandler} value={Interest}>
                 {Interests.map(item=>(
-                     <option key={item.key} value={item.value}>{item.value}</option>
+                     <option key={item.key} value={item.key}>{item.value}</option>
                 ))}
                
-                
-             
-
             </select>
             <br/>
             <br/>
-            <button>
+            <select onChange={AreasChangeHandler} value={Area}>
+                {Areas.map(item=>(
+                     <option key={item.key} value={item.key}> {item.value}</option>
+                ))}
+               
+            </select>
+            <br/>
+            <br/>
+            <Button htmlType="submit">
                 확인
-            </button>
+            </Button>
         </Form>
         </div>
     )

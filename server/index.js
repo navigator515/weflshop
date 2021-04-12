@@ -8,7 +8,7 @@ const cookieParser = require("cookie-parser");
 
 const config = require("./config/key");
 
-// const product =require( './routes/product');
+const product =require( './routes/product');
 
 // const mongoose = require("mongoose");
 // mongoose
@@ -61,11 +61,13 @@ if (process.env.NODE_ENV === "production") {
 
 
 
+app.get('/people', function (req, res) {
+  res.send('hello');
+})
 
 
 
-
-const port = process.env.PORT || 5000
+const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
   console.log(`Server Listening on ${port}`)

@@ -4,7 +4,7 @@ import {Icon} from 'antd';
 import axios from 'axios';
 
 
-function FileUpload() {
+function FileUpload(props) {
 
 
     const[Images, setImages]= useState([]);
@@ -24,6 +24,8 @@ function FileUpload() {
             if(response.data.success)//파일 저장 성공 
             {
                 setImages([...Images,response.data.filePath])
+                props.refreshFunction([...Images,response.data.filePath]);
+
             }else{
                 alert('파일을 저장하는데 실패했습니다')
 
@@ -31,6 +33,18 @@ function FileUpload() {
         })
 
     }
+
+    const deleteHandler = (image)=>{
+
+        const currentIndex = Images.indexOf(image);
+
+        let newImages = [...Images];
+        newImages.splice(currentIndex, 1);
+        setImages(newImages);
+        props.refreshFunction(newImages);
+
+    }
+
 
 
 
@@ -52,7 +66,7 @@ function FileUpload() {
             <div  style={{width:350, height:240, overflowY:'scroll'}}>
 
                     {Images.map((image, index) => (
-                        <div key={index}>
+                        <div onClick={ ()=> deleteHandler(image)} key={index} >
                             <img style={{ minWidth:'300px', width:'300px', height:'240px'}}
                             src={`http://localhost:5000/${image}`} />
                         </div>
