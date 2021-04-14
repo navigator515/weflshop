@@ -5,7 +5,8 @@ import {Icon,Col,Row, Card} from "antd";
 import Meta from 'antd/lib/card/Meta';
 import ImageSlider from '../../utils/ImageSlider'
 import CheckBox from '../LandingPage/Sections/CheckBox'
-import {area} from './Sections/Datas'
+import Radiobox from '..//LandingPage/Sections/RadioBox'
+import {interest, area} from './Sections/Datas'
 
 
 function LandingPage() {
@@ -123,8 +124,18 @@ function LandingPage() {
           
 
           {/* Filter */}
-          {/* CheckBox */}
-          <CheckBox list={area} handleFilters={filters => handleFilters(filters, "area")}/>
+
+          <Row gutter={[16,16]}>
+              <Col lg={12} xs={24}>
+            {/* CheckBox */}
+                <CheckBox list={interest} handleFilters={filters => handleFilters(filters, "interest")}/>
+                {/* //handleFilters 는 CheckBox 의 state 를 위에 useState 에 저장하기 위해서 사용해야한다, */}
+              </Col>
+              <Col lg={12} xs={24}>
+                  <Radiobox list={area}  handleFilters={filters => handleFilters(filters, "area")} />
+              </Col>
+          </Row>
+         
           {/* RadioBox */}
           {/* Search */}
 

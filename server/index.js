@@ -25,6 +25,8 @@ const connect = mongoose.connect(config.mongoURI,
   .then(() => console.log('MongoDB Connected...'))
   .catch(err => console.log(err));
 
+app.get('/', (req,res)=> res.send("Hello World"))
+
 app.use(cors())
 
 //to not get any deprecation warning or error
