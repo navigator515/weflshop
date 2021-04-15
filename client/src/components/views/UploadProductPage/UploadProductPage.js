@@ -15,9 +15,10 @@ const Interests =[
 
 const Areas =[
     {key:1, value:"서울"},
-    {key:2, value:"부산"},
-    {key:3, value:"인천"},
-    {key:4, value:"경기도"}
+    {key:200, value:"부산"},
+    {key:250, value:"인천"},
+    {key:280, value:"경기도"},
+    {key:350, value:"강원도"}
 ]
 
 function UploadProductPage(props) {

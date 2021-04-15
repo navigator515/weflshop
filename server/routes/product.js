@@ -69,12 +69,26 @@ router.post('/products', (req,res)=>{
     /////여기 부터
     let findArgs = {};
 
-    for(let key in req.body.filters){
-        if(req.body.filters[key].length>0){
+    for (let key in req.body.filters) {
+        if (req.body.filters[key].length > 0) {
 
-            findArgs[key]=req.body.filters[key];
-        }
+            console.log('key', key)
+
+            if (key === "area") {
+                findArgs[key] = {
+                    //Greater than equal
+                    $gte: req.body.filters[key][0],
+                    //Less than equal
+                    $lte: req.body.filters[key][1]
+                }
+            } else {
+                findArgs[key] = req.body.filters[key];
+            }
+
+         
+        }   
     }
+ console.log('findArg',findArgs)
 ///여기까지 checked 된 값만 배열에 담아서 filter 기능을 추가한다. [1,2,3] 이면 서울 부산 인천
 //find 에 findArgs 라는 객체를 넘겨주면 그에 맞게 Product를 찾아오게 된다. 
 //filter 에서 key 는 area 혹은 interest 이다 

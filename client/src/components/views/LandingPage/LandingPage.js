@@ -13,7 +13,7 @@ function LandingPage() {
 
     const [Products, setProducts] = useState([]);
     const [Skip, setSkip] = useState(0);
-    const [Limit, setLimit]= useState(4);
+    const [Limit, setLimit]= useState(6);
     const [PostSize, setPostSize] = useState(0)
     const [Filters, setFilters] = useState({
         area: [],
@@ -103,6 +103,19 @@ function LandingPage() {
     }
 
 
+    const handleArea=(value)=>{
+        const data =area;
+        let array =[];
+
+        for(let key in data){
+            if(data[key]._id=== parseInt(value,10)){
+                array=data[key].array;//ex [0,199]
+            }
+        }
+        return array;
+    }
+
+
     //category ( area or interst ) 에 따라서 (구분하여) 필터링할 수 있도록 구현
     //Filters 에는 area 배열과, interest 배열이 함께 있는데 
     // 그것을 category 인자로 구분하여서 fiters 값 ( [1,3,4] 등) 을 넣어준다.
@@ -112,7 +125,13 @@ function LandingPage() {
 
         newFilters[category]=filters;//[1,2,3 ] 을 넣어줌 
 
+        if(category==="area"){
+            let areaValues= handleArea(filters)
+            newFilters[category]= areaValues
+        }
+
         showFilteredResults(newFilters)
+        setFilters(newFilters)
 
     }
     return (
