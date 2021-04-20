@@ -56,19 +56,27 @@ router.post('/', (req,res) =>{
         
 })
 
+router.post('/update', (req,res) =>{
+    //받아온 정보들을 DB에 넣어준다.
+    const product=new Product(req.body)
+
+    product.update((err)=>{
+        if(err) return res.status(400).json({success:false, err})
+
+        return res.status(200).json({success:true});
+    });
+        
+})
+
+
 router.post('/products', (req,res)=>{
 
     // product collection 에 들어 있는 모든 게시물 정보를 가져오기
 
     let limit = req.body.limit ? parseInt(req.body.limit) : 20;
     let skip = req.body.skip ? parseInt(req.body.skip) : 0;
-
-
-
-
     /////여기 부터
     let findArgs = {};
-
     for (let key in req.body.filters) {
         if (req.body.filters[key].length > 0) {
 
@@ -105,6 +113,22 @@ router.post('/products', (req,res)=>{
     })
 
 })
+
+router.get('/products_by_id', (req, res) => {
+    //productId를 이용해서 DB 에서 productID 와 같은 상품의 정보를 가져온다,
+    let type = req.query.type
+    let productIds = req.query.id
+
+    Product.find({_id:productIds})
+        .populate('writer')
+        .exec((err,product)=>{
+            if(err) return res.status(400).send(err)
+
+            return res.status(200).send({success:true, product})
+        })
+  
+})
+
 
 
 module.exports =router;
