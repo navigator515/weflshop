@@ -1,9 +1,11 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import {Typography, Button, Form ,Input} from 'antd';
 import FileUpload from '../../utils/FileUpload';
 import Axios from 'axios';
-const {TextArea}=Input;
+import RichTextEditor from '../RichTextEditor/RichTextEditor';
 
+
+const {TextArea}=Input;
 
 
 const Interests =[
@@ -93,7 +95,7 @@ function UploadProductPage(props) {
                 <h2>위플 업로드</h2>
 
             </div>
-
+         
         <Form onSubmit={submitHandler}>
             {/* DropZone */}
             <FileUpload refreshFunction={updateImages} />
@@ -105,12 +107,14 @@ function UploadProductPage(props) {
             <br/>
             <br/>
             <label>내용</label>
-            <TextArea onChange={descriptionChangeHandler} value={Description}/>
+            {/* <TextArea onChange={descriptionChangeHandler} value={Description}/> */}
+            <RichTextEditor onChange={descriptionChangeHandler} value={Description}/>
             {/* <br/>
+            
             <br/>
             <label>가격</label>
             <Input type="number" onChange={priceChangeHandler} value={Price}/> */}
-
+            
             <br/>
             <br/>
             <select onChange={InterestsChangeHandler} value={Interest}>

@@ -71,19 +71,38 @@ function LandingPage() {
     const renderCards = Products.map((product, index)=>{
 
         console.log('product', product)
-        return <Col lg={6} md={8} xs={24} key={index}>
-            <Card
+        return <Row gutter={16,16} key={index} style={{marginTop:"40px"}}>
+            <div>
+            
+                    
+                    <Card
                 cover={<a href={`/product/${product._id}`}><ImageSlider images={product.images}/> </a>
 
                 }
             >
                 <Meta
-                    title={product.title}
-                    description={product.description}
+                   title={product.title}
+                  description={product.description}
+                     
                 />
+                <div>
+                    area: {product.area}
+                </div>
+                  </Card>
+                </div>
+                {/* <div>
+                    descripttion
+                    <Meta
+                        description={product.description}
+                    />
+                </div>
+                <div>
+                    댓글
+                </div> */}
+       
+            
 
-            </Card>
-        </Col>
+        </Row>
     })
 
     //서버에 요청할 때 filters 를 추가하여 보낸다
@@ -135,39 +154,39 @@ function LandingPage() {
 
     }
     return (
-       <div style={{width:'75%', margin: '3rem auto'}}>
-           <div style={{textAlign:'center'}}>
+       <div style={{width:'75%', margin: '0rem auto'}}>
+           <div style={{textAlign:'center', margin:'30px'}}>
                <h2>Let's WEFL <Icon type="rocket"/></h2>
                
            </div>
           
 
-          {/* Filter */}
+                {/* Filter */}
 
-          <Row gutter={[16,16]}>
-              <Col lg={12} xs={24}>
-            {/* CheckBox */}
-                <CheckBox list={interest} handleFilters={filters => handleFilters(filters, "interest")}/>
-                {/* //handleFilters 는 CheckBox 의 state 를 위에 useState 에 저장하기 위해서 사용해야한다, */}
-              </Col>
-              <Col lg={12} xs={24}>
-                  <Radiobox list={area}  handleFilters={filters => handleFilters(filters, "area")} />
-              </Col>
-          </Row>
+                <Row gutter={[16,16]} style={{margin:'-22px'}}>
+                    <Col lg={24} xs={24}>
+                    {/* CheckBox */}
+                        <CheckBox  list={interest} handleFilters={filters => handleFilters(filters, "interest")}/>
+                        {/* //handleFilters 는 CheckBox 의 state 를 위에 useState 에 저장하기 위해서 사용해야한다, */}
+                    </Col>
+                    {/* <Col lg={12} xs={24}>
+                        <Radiobox list={area}  handleFilters={filters => handleFilters(filters, "area")} />
+                    </Col> */}
+                </Row>
          
           {/* RadioBox */}
           {/* Search */}
 
-        <Row gutter={[16,16]}>
-            {renderCards}
-        </Row>
+                <Row gutter={[16,16]}>
+                    {renderCards}
+                </Row>
 
 
-        {PostSize >= Limit &&
-          <div style={{display:'flex', justifyContent:'center'}}>
-                <button onClick={loadMoreHandler}>더보기</button>
-            </div>
-        }
+                {PostSize >= Limit &&
+                <div style={{display:'flex', justifyContent:'center'}}>
+                        <button onClick={loadMoreHandler}>더보기</button>
+                    </div>
+                }
           
 
        </div>

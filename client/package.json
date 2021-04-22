@@ -3,15 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "alloyeditor": "^2.12.0",
     "antd": "^3.24.1",
     "axios": "^0.19.2",
+    "babel-polyfill": "^6.26.0",
     "core-js": "^3.6.4",
+    "draft-js": "^0.11.7",
     "formik": "^1.5.8",
     "image-gallery": "^0.3.1",
     "moment": "^2.24.0",
-    "react": "^16.8.6",
+    "react": "^16.14.0",
     "react-app-polyfill": "^1.0.6",
-    "react-dom": "^16.8.6",
+    "react-dom": "^16.14.0",
     "react-dropzone": "^11.3.2",
     "react-icons": "^3.7.0",
     "react-image-gallery": "^1.0.9",
@@ -45,6 +48,6 @@
     ]
   },
   "devDependencies": {
-    "http-proxy-middleware": "^1.0.3"
+    "http-proxy-middleware": "^1.2.0"
   }
 }

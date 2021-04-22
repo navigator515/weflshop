@@ -3,6 +3,7 @@ import {Descriptions, Button} from 'antd';
 function ProductInfo(props) {
 
     const clickHandler=()=>{
+        //필요한 정보를 likeList 에 넣어준다 
         
     }
 

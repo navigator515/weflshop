@@ -1,0 +1,121 @@
+
+@import "https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css";
+
+
+/* 위플 색 b3fb60 */
+* {
+  box-sizing: border-box;
+}
+
+input {
+  all: unset;
+  box-sizing: border-box;
+  appearance: none;
+}
+
+body {
+  background-color: white;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  color: black;
+  /* overflow: hidden;
+  height: 100%; */
+}
+
+button {
+  background-color: #b3fb60;
+  color: black;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+form {
+  width: 100%;
+}
+
+.nweet-input::placeholder {
+  color: black;
+  opacity: 0.9;
+}
+
+.app{
+  width: 100%;
+  max-width: 1600px;
+  
+}
+
+.container {
+
+    display: flex;
+    /* width: 1300px; */
+    /* flex-direction: column; */
+    margin-left: 0 auto;
+    margin-right: 0 auto;
+    /* align-items: center; */
+    
+}
+.wefl_container{
+    margin: 0 auto;
+
+}
+
+.wefl_post{
+    /* padding:7px; */
+    /* margin-bottom: 620px; */
+    margin: 0px auto 80px auto;
+    background-color: white;
+    width: 100%;
+    max-width: 614px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    color: rgba(0, 0, 0, 0.8);
+    border:rgba(209, 205, 205, 0.8) solid 0.3px;
+    border-radius: 10px;
+    min-width: 614px;
+
+}
+.wefl_post h4{
+    padding:10px;
+    display: inline;
+}
+
+.font_weight_bold{
+    font-weight: bold;
+
+}
+.wefl_post span{
+    padding:10px;
+}
+.wefl_post_header{
+    border: white solid 1px;
+    margin-bottom: 7px;
+    padding:13px;
+
+}
+
+.wefl_post img{
+    width: 100%;
+    max-width: 614px;
+    margin-bottom: 5px;
+    border-top: rgba(235, 231, 231, 0.507) solid 0.3px;
+}
+.wefl_post_text{
+    padding: 14px;
+}
+.wefl_post_text label{
+    margin : 0px auto;
+    align-items: center;
+    padding:50px;
+
+}
+
+
+.wefl_post_footer{
+    padding:14px;
+    border-top:rgba(235, 231, 231, 0.8) solid 0.3px;
+}
