@@ -3,6 +3,8 @@ import {Typography, Button, Form ,Input} from 'antd';
 import FileUpload from '../../utils/FileUpload';
 import Axios from 'axios';
 import RichTextEditor from '../RichTextEditor/RichTextEditor';
+import AlloyEditor from '../RichTextEditor/AlloyEditorComponent';
+import EditorForm from '../RichTextEditor/EditorForm';
 
 
 const {TextArea}=Input;
@@ -109,6 +111,8 @@ function UploadProductPage(props) {
             <label>내용</label>
             {/* <TextArea onChange={descriptionChangeHandler} value={Description}/> */}
             <RichTextEditor onChange={descriptionChangeHandler} value={Description}/>
+            <EditorForm/>
+            <AlloyEditor/>
             {/* <br/>
             
             <br/>

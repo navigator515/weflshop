@@ -17,3 +17,15 @@
     align-self: center;
 
 }
+
+@media (max-width: 767px) {
+    .SideBar{
+        display: none;
+        flex:0;
+    }
+        
+        .feed{
+            flex:1.0;
+        }
+    
+}

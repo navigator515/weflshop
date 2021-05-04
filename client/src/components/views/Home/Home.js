@@ -14,12 +14,12 @@ function Home() {
                
             </div>
 
-             <div>
+           
                  <Row gutter={[16,16]}>
                     <SideBar/>
                  </Row>
                 
-             </div>
+          
         </div>
     )
 }

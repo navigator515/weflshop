@@ -1,44 +1,8 @@
-// import React,{useEffect} from 'react'
-// import AlloyEditor from 'alloyeditor'
-// function Editor() {
 
-//     useEffect(() => {
-//        var alloyEditor = AlloyEditor.editable('myContentEditable');
-
-//     var content = alloyEditor.get('nativeEditor').getData();
-
-//     }, [])
-    
-//     return (
-        
-//         <div id="myContentEditable">
-//             <AlloyEditor/>
-          
-//             <script src="alloy-editor/alloy-editor-no-ckeditor-min.js"></script>
-//         </div>
-//     )
-// }
-
-// export default {Editor}
 import React from 'react';
 import {Editor, EditorState,getDefaultKeyBinding,RichUtils} from 'draft-js';
 import 'draft-js/dist/Draft.css';
 import './css/RichTextEditor.css'
-
-// export default  function RichTextEditor() {
-//     const [editorState, setEditorStadde] = React.useState(
-//       () => EditorState.createEmpty(),
-//     );
-  
-//     return (
-//     <div>
-//         <p>hihi</p>
-//     <Editor editorState={editorState} onChange={setEditorState} />
-//     </div>
-//     )
-//   }
-//   export default RichTextEditor;
-  // ReactDOM.render(<MyEditor />, document.getElementById('container'));
 
   class RichTextEditor extends React.Component {
     constructor(props) {

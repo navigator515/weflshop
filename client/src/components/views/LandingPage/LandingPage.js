@@ -183,7 +183,7 @@ function LandingPage() {
 
 
                 {PostSize >= Limit &&
-                <div style={{display:'flex', justifyContent:'center'}}>
+                <div style={{display:'flex', justifyContent:'center' ,marginTop:'15px'}}>
                         <button onClick={loadMoreHandler}>더보기</button>
                     </div>
                 }
