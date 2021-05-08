@@ -109,10 +109,10 @@ function UploadProductPage(props) {
             <br/>
             <br/>
             <label>내용</label>
-            {/* <TextArea onChange={descriptionChangeHandler} value={Description}/> */}
-            <RichTextEditor onChange={descriptionChangeHandler} value={Description}/>
+            <TextArea onChange={descriptionChangeHandler} value={Description}/>
+            {/* <RichTextEditor onChange={descriptionChangeHandler} value={Description}/>
             <EditorForm/>
-            <AlloyEditor/>
+            <AlloyEditor/> */}
             {/* <br/>
             
             <br/>
@@ -121,7 +121,7 @@ function UploadProductPage(props) {
             
             <br/>
             <br/>
-            <select onChange={InterestsChangeHandler} value={Interest}>
+            {/* <select onChange={InterestsChangeHandler} value={Interest}>
                 {Interests.map(item=>(
                      <option key={item.key} value={item.key}>{item.value}</option>
                 ))}
@@ -129,12 +129,12 @@ function UploadProductPage(props) {
             </select>
             <br/>
             <br/>
-            <select onChange={AreasChangeHandler} value={Area}>
+            <select onChange={AreasChangeHandler} value={Area} >
                 {Areas.map(item=>(
                      <option key={item.key} value={item.key}> {item.value}</option>
                 ))}
                
-            </select>
+            </select> */}
             <br/>
             <br/>
             <Button htmlType="submit">

@@ -100,7 +100,9 @@ router.post('/products', (req,res)=>{
 ///여기까지 checked 된 값만 배열에 담아서 filter 기능을 추가한다. [1,2,3] 이면 서울 부산 인천
 //find 에 findArgs 라는 객체를 넘겨주면 그에 맞게 Product를 찾아오게 된다. 
 //filter 에서 key 는 area 혹은 interest 이다 
+const mysort={updatedAt:-1}
     Product.find(findArgs)
+    .sort(mysort)
     .populate("writer")
     .skip(skip)
     .limit(limit)

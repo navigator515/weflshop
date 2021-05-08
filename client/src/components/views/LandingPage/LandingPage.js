@@ -7,6 +7,7 @@ import ImageSlider from '../../utils/ImageSlider'
 import CheckBox from '../LandingPage/Sections/CheckBox'
 import Radiobox from '..//LandingPage/Sections/RadioBox'
 import {interest, area} from './Sections/Datas'
+import SimpleUploadProduct from '../UploadProductPage/SimpleUploadProduct';
 
 
 function LandingPage() {
@@ -159,25 +160,28 @@ function LandingPage() {
                <h2>Let's WEFL <Icon type="rocket"/></h2>
                
            </div>
-          
+          <div>
+              
+          </div>
 
                 {/* Filter */}
-
-                <Row gutter={[16,16]} style={{margin:'-22px'}}>
-                    <Col lg={24} xs={24}>
+        
+                {/* <Row gutter={[16,16]} style={{margin:'-22px'}}>
+                    <Col lg={24} xs={24}> */}
                     {/* CheckBox */}
-                        <CheckBox  list={interest} handleFilters={filters => handleFilters(filters, "interest")}/>
+                        {/* <CheckBox  list={interest} handleFilters={filters => handleFilters(filters, "interest")}/> */}
                         {/* //handleFilters 는 CheckBox 의 state 를 위에 useState 에 저장하기 위해서 사용해야한다, */}
-                    </Col>
+                    {/* </Col> */}
                     {/* <Col lg={12} xs={24}>
                         <Radiobox list={area}  handleFilters={filters => handleFilters(filters, "area")} />
                     </Col> */}
-                </Row>
+                {/* </Row> */}
          
           {/* RadioBox */}
           {/* Search */}
 
                 <Row gutter={[16,16]}>
+                <SimpleUploadProduct />
                     {renderCards}
                 </Row>
 

@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Editor } from 'react-draft-wysiwyg';
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import styled from 'styled-components';
-import { EditorState,convertToRaw } from 'draft-js';
+import { EditorState,convertToRaw, ContentState } from 'draft-js';
 // convertToRaw: editorState 객체가 주어지면 원시 JS 구조로 변환.
 
 // convertToRaw로 변환시켜준 원시 JS 구조를 HTML로 변환.
 import draftToHtml from 'draftjs-to-html';
+
+import htmlToDraft from 'html-to-draftjs';
 
 const MyBlock = styled.div`
     .wrapper-class{
@@ -45,9 +47,30 @@ const EditorForm = () => {
   };
 
 
+
  // editorState의 현재 contentState 값을 원시 JS 구조로 변환시킨뒤, HTML 태그로 변환시켜준다.
  const editorToHtml = draftToHtml(convertToRaw(editorState.getCurrentContent()));
 
+ 
+  const htmlToEditor = `<pre>const editorToHtml = 
+        draftToHtml(convertToRaw(editorState.getCurrentContent()));</pre>
+        <p style="text-align:center;"><strong>ㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇㅎㅇ
+        </strong></p>`;
+
+  useEffect(() => {
+    const blocksFromHtml = htmlToDraft(htmlToEditor);
+    if (blocksFromHtml) {
+      const { contentBlocks, entityMap } = blocksFromHtml;
+      // https://draftjs.org/docs/api-reference-content-state/#createfromblockarray
+      const contentState = ContentState.createFromBlockArray(contentBlocks, entityMap);
+      // ContentState를 EditorState기반으로 새 개체를 반환.
+      // https://draftjs.org/docs/api-reference-editor-state/#createwithcontent
+      const editorState = EditorState.createWithContent(contentState);
+      setEditorState(editorState);
+    }
+  // 처음 마운트됬을 때만 실행되야 된다.
+  // eslint-disable-next-line
+  },[]);
 
   return (
     <MyBlock>
