@@ -87,7 +87,7 @@ function LandingPage() {
                      
                 />
                 <div>
-                    area: {product.area}
+                    {/* area: {product.area} */}
                 </div>
                   </Card>
                 </div>

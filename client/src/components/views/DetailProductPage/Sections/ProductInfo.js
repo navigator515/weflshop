@@ -10,10 +10,10 @@ function ProductInfo(props) {
     return (
         <div>
             <Descriptions title="WEFL Info" bordered>
-                <Descriptions.Item label="제목">{props.detail.title}</Descriptions.Item>
-                <Descriptions.Item label="관심사">{props.detail.interest}</Descriptions.Item>
-                <Descriptions.Item label="지역">{props.detail.area}</Descriptions.Item>
-                <Descriptions.Item label="내용">{props.detail.descriptions}</Descriptions.Item>
+                <Descriptions.Item label="제목" span={4}>{props.detail.title}</Descriptions.Item>
+                {/* <Descriptions.Item label="관심사">{props.detail.interest}</Descriptions.Item>
+                <Descriptions.Item label="지역">{props.detail.area}</Descriptions.Item> */}
+                <Descriptions.Item label="내용">{props.detail.description}</Descriptions.Item>
             </Descriptions>
         <br/>
         <br/>
