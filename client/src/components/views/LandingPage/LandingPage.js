@@ -2,6 +2,7 @@ import React,{useEffect, useState} from 'react'
 import { FaCode } from "react-icons/fa";
 import axios from 'axios';
 import {Icon,Col,Row, Card} from "antd"; 
+import {MdDelete} from 'react-icons/md'
 import Meta from 'antd/lib/card/Meta';
 import ImageSlider from '../../utils/ImageSlider'
 import CheckBox from '../LandingPage/Sections/CheckBox'
@@ -10,7 +11,7 @@ import {interest, area} from './Sections/Datas'
 import SimpleUploadProduct from '../UploadProductPage/SimpleUploadProduct';
 
 
-function LandingPage() {
+function LandingPage(props) {
 
     const [Products, setProducts] = useState([]);
     const [Skip, setSkip] = useState(0);
@@ -70,12 +71,15 @@ function LandingPage() {
     }
 
     const renderCards = Products.map((product, index)=>{
-
+        console.log('user!!!!!!!',props.user);
         console.log('product', product)
         return <Row gutter={16,16} key={index} style={{marginTop:"40px"}}>
             <div>
             
-                    
+                    <p style={{border:"1px solid #e8e8e8", marginBottom:"0px",borderBottom:"0px",
+                     borderTopLeftRadius:'3px',borderTopRightRadius:'3px',
+                     padding:"10px"}}>
+                        <span>{props.user.userData.name}</span> <span style={{marginLeft:"300px"}}>수정</span><span><MdDelete /></span></p>
                     <Card
                 cover={<a href={`/product/${product._id}`}><ImageSlider images={product.images}/> </a>
 
@@ -86,9 +90,7 @@ function LandingPage() {
                   description={product.description}
                      
                 />
-                <div>
-                    {/* area: {product.area} */}
-                </div>
+              
                   </Card>
                 </div>
                 {/* <div>

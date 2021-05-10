@@ -4,12 +4,12 @@ import SideBar from '../SideBar/SideBar'
 import './css/Home.css'
 import {Row} from 'antd'
 
-function Home() {
+function Home(props) {
     return (
         <div className="container">
             <div className="feed" >
                 
-                <LandingPage/>
+                <LandingPage user={props.user}/>
                
                
             </div>

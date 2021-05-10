@@ -138,7 +138,7 @@ function UploadProductPage(props) {
             <br/>
             <br/>
             <Button htmlType="submit">
-                확인
+                저장
             </Button>
         </Form>
         </div>
