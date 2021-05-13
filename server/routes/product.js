@@ -4,7 +4,7 @@ const express = require('express');
 const router= express.Router();
 const multer = require('multer');
 const { Product } = require("../models/Product");
-
+const ObjectId =require("mongodb").ObjectID
 
 //=================================
 //             Product
@@ -67,6 +67,28 @@ router.post('/update', (req,res) =>{
     });
         
 })
+
+router.post('/delete', (req,res) =>{
+    //받아온 정보들을 DB에 넣어준다.
+    const productId=req.body.id;
+    
+    var objectId=ObjectId(productId);
+    
+    // const product = new Product(productId);
+    console.log('product:',Product);
+    console.log('productId:',productId);
+    console.log('ObectId:',ObjectId(productId));
+
+   Product.deleteOne({"_id":objectId}
+   ).then(
+       console.log('good')
+   );
+
+   return res.status(200).json({success:true});
+ 
+        
+})
+
 
 
 router.post('/products', (req,res)=>{

@@ -2,13 +2,17 @@ import React,{useEffect, useState} from 'react'
 import { FaCode } from "react-icons/fa";
 import axios from 'axios';
 import {Icon,Col,Row, Card} from "antd"; 
+// import {FormOutlined} from '@ant-design/icons-svg/lib/asn/FormOutlined'
+// import EditOutline from '@ant-design'
 import {MdDelete} from 'react-icons/md'
+import  {AiOutlineEdit} from 'react-icons/ai'
 import Meta from 'antd/lib/card/Meta';
 import ImageSlider from '../../utils/ImageSlider'
 import CheckBox from '../LandingPage/Sections/CheckBox'
 import Radiobox from '..//LandingPage/Sections/RadioBox'
 import {interest, area} from './Sections/Datas'
 import SimpleUploadProduct from '../UploadProductPage/SimpleUploadProduct';
+// import { response } from 'express';
 
 
 function LandingPage(props) {
@@ -69,17 +73,45 @@ function LandingPage(props) {
         setSkip(skip)
 
     }
+    
+   const onClickDeleteButton=(id)=>{
+            //서버에 id 전달해서 삭제 
+            // 
+            console.log( '이게 왜 호출되누')
+            console.log('product ID',id);
+
+            axios.post('/api/product/delete',id)
+            .then(response=>{
+                if(response.data.success){
+                    console.log("삭제 성공~~")
+                }else{
+                    alert('삭제하는데 실패했습니다');
+                }
+            })
+            }
+
+
+    const onClickEditButton=(id)=>{
+        //서버에 id 전달해서 수정
+        // 
+        console.log( '이게 왜 호출되누')
+        console.log('product ID',id);
+        }
+    
 
     const renderCards = Products.map((product, index)=>{
         console.log('user!!!!!!!',props.user);
         console.log('product', product)
+        
         return <Row gutter={16,16} key={index} style={{marginTop:"40px"}}>
             <div>
             
                     <p style={{border:"1px solid #e8e8e8", marginBottom:"0px",borderBottom:"0px",
                      borderTopLeftRadius:'3px',borderTopRightRadius:'3px',
                      padding:"10px"}}>
-                        <span>{props.user.userData.name}</span> <span style={{marginLeft:"300px"}}>수정</span><span><MdDelete /></span></p>
+                        <span>{props.user.userData.name}</span>
+                        <span onClick={()=>onClickDeleteButton(product._id)} style={{marginLeft:10,float:"right"}}><MdDelete /></span>
+                         <span onClick={()=>onClickEditButton(product._id)}  style={{float:"right"}}><AiOutlineEdit/></span></p>
                     <Card
                 cover={<a href={`/product/${product._id}`}><ImageSlider images={product.images}/> </a>
 
