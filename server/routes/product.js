@@ -74,13 +74,11 @@ router.post('/delete', (req,res) =>{
     
     var objectId=ObjectId(productId);
     
-    // const product = new Product(productId);
-    console.log('product:',Product);
-    console.log('productId:',productId);
-    console.log('ObectId:',ObjectId(productId));
 
-   Product.deleteOne({"_id":objectId}
-   ).then(
+    console.log('ObectId:(" ',ObjectId(productId)+' ") 이 삭제되었습니다.');
+
+   Product.deleteOne({"_id":objectId})
+   .then(
        console.log('good')
    );
 

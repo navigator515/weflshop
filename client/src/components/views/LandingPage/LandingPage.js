@@ -77,18 +77,29 @@ function LandingPage(props) {
    const onClickDeleteButton=(id)=>{
             //서버에 id 전달해서 삭제 
             // 
+
+            
             console.log( '이게 왜 호출되누')
             console.log('product ID',id);
-
-            axios.post('/api/product/delete',id)
+        const body={id:id}
+            axios.post('/api/product/delete',body)
             .then(response=>{
                 if(response.data.success){
                     console.log("삭제 성공~~")
+                    window.location.reload();
                 }else{
                     alert('삭제하는데 실패했습니다');
                 }
             })
             }
+        function delete_button_event(id){
+                if (window.confirm("정말 삭제하시겠습니까??") == true){    //확인
+                    onClickDeleteButton(id)
+                }else{   //취소
+                    return;
+                }
+              }
+
 
 
     const onClickEditButton=(id)=>{
@@ -102,7 +113,7 @@ function LandingPage(props) {
     const renderCards = Products.map((product, index)=>{
         console.log('user!!!!!!!',props.user);
         console.log('product', product)
-        
+        console.log('props.product!!!!!!!!!!!!',product._id);
         return <Row gutter={16,16} key={index} style={{marginTop:"40px"}}>
             <div>
             
@@ -110,8 +121,8 @@ function LandingPage(props) {
                      borderTopLeftRadius:'3px',borderTopRightRadius:'3px',
                      padding:"10px"}}>
                         <span>{props.user.userData.name}</span>
-                        <span onClick={()=>onClickDeleteButton(product._id)} style={{marginLeft:10,float:"right"}}><MdDelete /></span>
-                         <span onClick={()=>onClickEditButton(product._id)}  style={{float:"right"}}><AiOutlineEdit/></span></p>
+                        <span onClick={()=>delete_button_event(product._id)} style={{marginLeft:10,float:"right", cursor:"pointer"}}><MdDelete /></span>
+                         <span onClick={()=>onClickEditButton(product._id)}  style={{float:"right", cursor:"pointer"}}><AiOutlineEdit/></span></p>
                     <Card
                 cover={<a href={`/product/${product._id}`}><ImageSlider images={product.images}/> </a>
 

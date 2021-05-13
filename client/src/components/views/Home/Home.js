@@ -9,7 +9,7 @@ function Home(props) {
         <div className="container">
             <div className="feed" >
                 
-                <LandingPage user={props.user}/>
+                <LandingPage user={props.user} product={props.product}/>
                
                
             </div>
